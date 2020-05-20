@@ -1,7 +1,7 @@
 import React from "react";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 
-class Login extends React.Component {
+class LoginForm extends React.Component {
   state = {
     credentials: {
       username: "",
@@ -27,7 +27,7 @@ class Login extends React.Component {
     axiosWithAuth()
       .post("/api/login", this.state.credentials)
       .then(res => {
-        console.log(res, 'wWWWWWWWWWWWWhat we have here???!!!!????')
+        console.log(res.data, 'wWWWWWWWWWWWWhat we have here???!!!!????')
         // res.data.payload
         localStorage.setItem("token", res.data.payload);
         this.props.history.push("/protected");
@@ -58,4 +58,4 @@ class Login extends React.Component {
   }
 }
 
-export default Login;
+export default LoginForm;

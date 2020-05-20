@@ -1,33 +1,63 @@
-import React from "react";
+import React, { useState, useEffect }from "react";
 
-import Friend from './Friend'
+import NewFriendForm from './NewFriendForm'
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 
-class FriendsList extends React.Component {
-  state = {
-    friendList: []
-  };
+// class FriendsList extends React.Component {
+export default function FriendsList(props) {
+    // state = {
+    //     friends: []
+    // };
+    // componentDidMount(){
+    //     this.getData();
+    // }
 
-    componentDidMount(){
-        this.getData();
-    }
-
-    getData = () => {
+ const [friends, setFriends] = useState([])
+    console.log(friends, 'FRIENDlIST data????????')
+    // getData = () => {
+    //     axiosWithAuth()
+    //         .get('/api/data')
+    //         .then(res => {
+    //             console.log(res, 'what we have here???!!!!????')
+    //             this.setState({friends: res.data});
+    //             })
+    //         .catch(err => {console.log(err)
+    //         });
+    // }    
+    
+    useEffect(() => {
         axiosWithAuth()
-        .get('/api/data')
+        .get('/api/friends')
         .then(res => {
             console.log(res, 'what we have here???!!!!????')
-          this.setState({
-              friendsList: res.data.data.map(friends => {
-                  console.log(friends, 'DDDOOO WWEE have Friends here???????!!!???!?!?!?!?!??!')
-                  return <Friend key={friends.id} friends={friends} id={friends.id}/>
-                })
+            setFriends(res.data);
             })
-        })
-         .catch(err => console.log(err.response))
-    }
+        .catch(err => {console.log(err);
+        });
+    }, []);
+    // render(){
+        return(
+            <div>
+                <NewFriendForm/>
+                <div>
+                    {friends.map((friend) => {
+                        return (
+                            <div key={friend.id}>
+                                <h4>Name: {friend.name}</h4>
+                                <p>Age: {friend.age}</p>
+                                <p>Email: {friend.email}</p>
+                            </div>    
+                        )
+                    })}
+                </div>
+            </div>
+        )
+
+
+
+    // }
 
 
 
 }
-export default FriendsList
+// export default FriendsList
