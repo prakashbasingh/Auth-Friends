@@ -1,5 +1,19 @@
 import React, { useState } from "react";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
+import styled from 'styled-components'
+
+const Form = styled.form`
+margin: 4rem;
+background: orange;
+`
+
+const Button = styled.button`
+margin: 1rem;
+height: 35px;
+width: 100px;
+background: lime;
+`
+
 
 
 const initialNewFriendInfo = {
@@ -39,7 +53,7 @@ const submitNewFriendInfo = e => {
 
 
     return(
-        <form onSubmit = {submitNewFriendInfo}>
+        <Form onSubmit = {submitNewFriendInfo}>
 
             <label>Name</label>
             <input name = 'name'
@@ -55,8 +69,8 @@ const submitNewFriendInfo = e => {
             <input name = 'email'
                    value = {newFriendInfo.email}
                    onChange = {changeNewFriendInfo}/>  
-                   <button>Add Friend</button>        
-        </form>
+            <Button>Add Friend</Button>        
+        </Form>
 
     )
 

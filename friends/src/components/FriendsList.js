@@ -3,6 +3,20 @@ import React, { useState, useEffect }from "react";
 import NewFriendForm from './NewFriendForm'
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 
+import styled from 'styled-components'
+
+
+const FriendContainer = styled.div`
+border: 2px solid black;
+margin: 1rem 10rem;
+width: auto;
+text-align: center;
+color: blueviolet;
+background: beige;
+text-emphasis-color: gold;
+box-shadow: 5px 5px 5px #888;
+`
+
 // class FriendsList extends React.Component {
 export default function FriendsList(props) {
     // state = {
@@ -16,7 +30,7 @@ export default function FriendsList(props) {
     console.log(friends, 'FRIENDlIST data????????')
     // getData = () => {
     //     axiosWithAuth()
-    //         .get('/api/data')
+    //         .get('/api/friends')
     //         .then(res => {
     //             console.log(res, 'what we have here???!!!!????')
     //             this.setState({friends: res.data});
@@ -42,11 +56,11 @@ export default function FriendsList(props) {
                 <div>
                     {friends.map((friend) => {
                         return (
-                            <div key={friend.id}>
+                            <FriendContainer key={friend.id}>
                                 <h4>Name: {friend.name}</h4>
                                 <p>Age: {friend.age}</p>
                                 <p>Email: {friend.email}</p>
-                            </div>    
+                            </FriendContainer>    
                         )
                     })}
                 </div>
