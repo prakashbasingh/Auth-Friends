@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 
-import Login from "./components/Login";
+import LoginForm from "./components/LoginForm";
 import FriendsList from "./components/FriendsList";
 import PrivateRoute from "./components/PrivateRoute";
 
@@ -11,18 +11,19 @@ function App() {
   return (
     <Router>
       <div>
-        <ul>
-          <li>
-            <link to='/login'>Login</link>
-          </li>
-          <li>
+        <nav>
+        <h1>App For Friend's Info.</h1>
+          <div>
+            <Link to='/login'>Login</Link>
+          </div>
+          <div>
             <Link to='/protected'>Friend's List(protectedPage)</Link>
-          </li>
-        </ul>
+          </div>
+        </nav>
         <Switch>
           <PrivateRoute exact path='/protected' component={FriendsList}/>
-          <Route path='/login' component={Login}/>
-          <Route component={login}/>
+          <Route path='/login' component={LoginForm}/>
+          <Route component={LoginForm}/>
         </Switch>
       </div>
     </Router>
